@@ -2,6 +2,7 @@ import { uniq, get } from 'lodash'
 import axios from '~/plugins/axios'
 
 export const state = () => ({
+  wasteTypes: ['landfill', 'green', 'recycling'],
   monthlyCollections: {
     landfill: {},
     green: {},
@@ -23,6 +24,9 @@ export const mutations = {
   },
   monthLabels(state, payload) {
     Object.assign(state.monthLabels, payload)
+  },
+  wasteTypes(state, payload) {
+    Object.assign(state, { wasteTypes: payload })
   }
 }
 

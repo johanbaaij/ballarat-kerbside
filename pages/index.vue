@@ -3,75 +3,106 @@
     <v-row class="chart-row">
       <v-col>
         <h2>Delivery Weights</h2>
-        <chart :chart-data="weightsData" />
+        <chart :chart-data="weightsData" :options="chartOptions" />
       </v-col>
     </v-row>
     <v-row class="chart-row">
       <v-col>
         <h2>Collection Counts</h2>
-        <chart :chart-data="collectionsData" />
+        <chart :chart-data="collectionsData" :options="chartOptions" />
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Chart from '@/components/chart'
 
 export default {
   components: { Chart },
+  head: {
+    title: 'Home'
+  },
   data() {
     return {
-      loaded: false
+      loaded: false,
+      chartOptions: {
+        maintainAspectRatio: false,
+        responsiveAnimationDuration: 100,
+        scales: {
+          yAxes: [
+            {
+              stacked: true
+            }
+          ]
+        }
+      }
     }
   },
   computed: {
+    ...mapState(['wasteTypes']),
     ...mapGetters(['collectionsByType', 'weightsByType', 'labels']),
+    collectionDatasets() {
+      const vm = this
+      return [
+        {
+          wasteType: 'landfill',
+          label: 'Landfill',
+          backgroundColor: '#df4444',
+          data: this.collectionsByType('landfill')
+        },
+        {
+          wasteType: 'recycling',
+          label: 'Recycling',
+          backgroundColor: '#FFC428',
+          data: this.collectionsByType('recycling')
+        },
+        {
+          wasteType: 'green',
+          label: 'Green waste',
+          backgroundColor: '#447C2B',
+          data: this.collectionsByType('green')
+        }
+      ].filter((set) => {
+        return vm.wasteTypes.includes(set.wasteType)
+      })
+    },
     collectionsData() {
       return {
         labels: this.labels,
-        datasets: [
-          {
-            label: 'Landfill',
-            backgroundColor: '#df4444',
-            data: this.collectionsByType('landfill')
-          },
-          {
-            label: 'Recycling',
-            backgroundColor: '#FFC428',
-            data: this.collectionsByType('recycling')
-          },
-          {
-            label: 'Green waste',
-            backgroundColor: '#447C2B',
-
-            data: this.collectionsByType('green')
-          }
-        ]
+        datasets: this.collectionDatasets
       }
+    },
+    weightDatasets() {
+      const vm = this
+      return [
+        {
+          wasteType: 'landfill',
+          label: 'Landfill',
+          backgroundColor: '#df4444',
+          data: this.weightsByType('landfill')
+        },
+        {
+          wasteType: 'recycling',
+          label: 'Recycling',
+          backgroundColor: '#FFC428',
+          data: this.weightsByType('recycling')
+        },
+        {
+          wasteType: 'green',
+          label: 'Green waste',
+          backgroundColor: '#447C2B',
+          data: this.weightsByType('green')
+        }
+      ].filter((set) => {
+        return vm.wasteTypes.includes(set.wasteType)
+      })
     },
     weightsData() {
       return {
         labels: this.labels,
-        datasets: [
-          {
-            label: 'Landfill',
-            backgroundColor: '#df4444',
-            data: this.weightsByType('landfill')
-          },
-          {
-            label: 'Recycling',
-            backgroundColor: '#FFC428',
-            data: this.weightsByType('recycling')
-          },
-          {
-            label: 'Green waste',
-            backgroundColor: '#447C2B',
-
-            data: this.weightsByType('green')
-          }
-        ]
+        datasets: this.weightDatasets
       }
     }
   },
@@ -85,6 +116,8 @@ export default {
 </script>
 <style>
 .chart-row {
-  height: 450px;
+  height: 30vh;
+  min-height: 450px;
+  position: relative;
 }
 </style>

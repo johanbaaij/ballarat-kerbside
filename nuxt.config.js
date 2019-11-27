@@ -4,8 +4,8 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s - ' + 'Ballarat Kerbside Data',
+    title: 'Ballarat Kerbside Data' || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -70,6 +70,7 @@ export default {
    ** Env vars
    */
   env: {
+    package_title: 'Ballarat Kerbside Data',
     tableIdCollections: 'f815755d-3fbb-4e03-bdbd-4184f0e0141d',
     tableIdRecycling: '997f475a-b954-4bba-8ceb-9e46379dbe9f',
     tableIdLandfill: '7d5aee9b-04c1-4222-8913-65238d94d5d4',
