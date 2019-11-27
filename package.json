@@ -1,7 +1,7 @@
 {
-  "name": "Garbo",
+  "name": "ballarat-kerbside-data",
   "version": "1.0.0",
-  "description": "Ballarat bin collection data visualizations",
+  "description": "Bin collection and delivery data visualized",
   "author": "Johan Baaij",
   "private": true,
   "scripts": {

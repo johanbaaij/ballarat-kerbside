@@ -1,5 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
   mode: 'universal',
   /*
@@ -57,21 +55,7 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+    customVariables: ['~/assets/variables.scss']
   },
   /*
    ** Build configuration
@@ -86,7 +70,10 @@ export default {
    ** Env vars
    */
   env: {
-    tableIdBins: 'f815755d-3fbb-4e03-bdbd-4184f0e0141d',
+    tableIdCollections: 'f815755d-3fbb-4e03-bdbd-4184f0e0141d',
+    tableIdRecycling: '997f475a-b954-4bba-8ceb-9e46379dbe9f',
+    tableIdLandfill: '7d5aee9b-04c1-4222-8913-65238d94d5d4',
+    tableIdGreen: 'bf63bada-b058-4d75-84da-015d50fa8abc',
     baseUrl: 'https://data.gov.au/data/api/3/action/'
   }
 }

@@ -1,11 +1,8 @@
 <template>
-  <v-app dark>
-    <v-app-bar fixed app>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-    </v-app-bar>
+  <v-app>
     <v-content>
       <v-container>
+        <h1>{{ title }}</h1>
         <nuxt />
       </v-container>
     </v-content>
@@ -19,7 +16,7 @@
 export default {
   data() {
     return {
-      title: 'Garbo'
+      title: 'Ballarat Kerbside Data'
     }
   }
 }

@@ -1,6 +1,6 @@
-# Garbo
+# Ballarat Kerbside Data
 
-> Ballarat bin collection data visualizations
+> Bin collection and delivery data visualized
 
 ## Build Setup
 
