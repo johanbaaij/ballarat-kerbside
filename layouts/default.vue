@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" app>
-      <filters />
-    </v-navigation-drawer>
     <v-app-bar color="primary" dark app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>{{ title }}</v-toolbar-title>
     </v-app-bar>
     <v-content>
@@ -22,11 +18,7 @@
 </template>
 
 <script>
-import Filters from '@/components/Filters'
 export default {
-  components: {
-    Filters
-  },
   data() {
     return {
       title: 'Ballarat Kerbside Data',

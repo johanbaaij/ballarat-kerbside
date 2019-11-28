@@ -33,22 +33,27 @@ export const mutations = {
 
 export const getters = {
   collectionsByType: (state, getters) => (type) => {
-    return getters.labels.map((label) => {
+    return getters.collectionLabels.map((label) => {
       return get(state.monthlyCollections[type], label, null)
     })
   },
   weightsByType: (state, getters) => (type) => {
-    return getters.labels.map((label) => {
+    return getters.weightLabels.map((label) => {
       return get(state.monthlyWeights[type], label, null)
     })
   },
-  labels: (state) => {
+  weightLabels: (state) => {
     const keys = [
       ...Object.keys(state.monthlyWeights.green),
-      ...Object.keys(state.monthlyCollections.green),
       ...Object.keys(state.monthlyWeights.landfill),
+      ...Object.keys(state.monthlyWeights.recycling)
+    ]
+    return uniq(keys).sort()
+  },
+  collectionLabels: (state) => {
+    const keys = [
+      ...Object.keys(state.monthlyCollections.green),
       ...Object.keys(state.monthlyCollections.landfill),
-      ...Object.keys(state.monthlyWeights.recycling),
       ...Object.keys(state.monthlyCollections.recycling)
     ]
     return uniq(keys).sort()

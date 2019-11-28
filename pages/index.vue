@@ -1,31 +1,19 @@
 <template>
   <div>
+    <v-row>
+      <v-col>
+        <p>
+          The City of Ballarat is one of the few Australian cities that
+          publishes detailed data on their kerbside bin collections. This site
+          aims to make this data easier to explore.
+        </p>
+      </v-col>
+    </v-row>
     <v-row class="chart-row">
       <v-col>
         <h2>Delivery Weights</h2>
         <chart :chart-data="weightsData" :options="chartOptions" />
       </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <p>
-          Datasets: City of Ballarat,
-          <a
-            href="https://data.gov.au/data/dataset/ballarat-kerbside-green-waste-deliveries"
-            >Ballarat Kerbside Green Waste Deliveries</a
-          >,
-          <a
-            href="https://data.gov.au/data/dataset/ballarat-kerbside-landfill-deliveries"
-            >Ballarat Kerbside Landfill Deliveries</a
-          >,
-          <a
-            href="https://data.gov.au/data/dataset/ballarat-kerbside-recycling-deliveries"
-            >Ballarat Kerbside Recycling Deliveries</a
-          >, Sourced on 28 November 2019
-        </p>
-      </v-col>
-    </v-row>
-    <v-row class="chart-row">
       <v-col>
         <h2>Collection Counts</h2>
         <chart :chart-data="collectionsData" :options="chartOptions" />
@@ -34,11 +22,24 @@
     <v-row>
       <v-col>
         <p>
-          Dataset:
+          Datasets:<br />
+          <a
+            href="https://data.gov.au/data/dataset/ballarat-kerbside-green-waste-deliveries"
+            >Ballarat Kerbside Green Waste Deliveries</a
+          ><br />
+          <a
+            href="https://data.gov.au/data/dataset/ballarat-kerbside-landfill-deliveries"
+            >Ballarat Kerbside Landfill Deliveries</a
+          ><br />
+          <a
+            href="https://data.gov.au/data/dataset/ballarat-kerbside-recycling-deliveries"
+            >Ballarat Kerbside Recycling Deliveries</a
+          ><br />
           <a
             href="https://data.gov.au/data/dataset/91fe5bbb-0738-4b39-a56f-7687c6dce65e"
             >Ballarat Kerbside Bin Collections</a
-          >, City of Ballarat, Sourced on 28 November 2019
+          ><br />
+          City of Ballarat, Sourced on 28 November 2019
         </p>
       </v-col>
     </v-row>
@@ -71,9 +72,13 @@ export default {
   },
   computed: {
     ...mapState(['wasteTypes']),
-    ...mapGetters(['collectionsByType', 'weightsByType', 'labels']),
+    ...mapGetters([
+      'collectionsByType',
+      'weightsByType',
+      'collectionLabels',
+      'weightLabels'
+    ]),
     collectionDatasets() {
-      const vm = this
       return [
         {
           wasteType: 'landfill',
@@ -93,18 +98,15 @@ export default {
           backgroundColor: '#447C2B',
           data: this.collectionsByType('green')
         }
-      ].filter((set) => {
-        return vm.wasteTypes.includes(set.wasteType)
-      })
+      ]
     },
     collectionsData() {
       return {
-        labels: this.labels,
+        labels: this.collectionLabels,
         datasets: this.collectionDatasets
       }
     },
     weightDatasets() {
-      const vm = this
       return [
         {
           wasteType: 'landfill',
@@ -124,13 +126,11 @@ export default {
           backgroundColor: '#447C2B',
           data: this.weightsByType('green')
         }
-      ].filter((set) => {
-        return vm.wasteTypes.includes(set.wasteType)
-      })
+      ]
     },
     weightsData() {
       return {
-        labels: this.labels,
+        labels: this.weightLabels,
         datasets: this.weightDatasets
       }
     }
