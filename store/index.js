@@ -42,7 +42,7 @@ export const getters = {
       return get(state.monthlyWeights[type], label, null)
     })
   },
-  labels: (state, getters) => {
+  labels: (state) => {
     const keys = [
       ...Object.keys(state.monthlyWeights.green),
       ...Object.keys(state.monthlyCollections.green),
@@ -125,15 +125,5 @@ export const actions = {
       type: 'recycling',
       table: process.env.tableIdRecycling
     })
-  },
-  calculateMonthLabels({ state, commit }) {
-    commit(
-      'monthLabels',
-      uniq([
-        ...Object.keys(state.monthlyWeights.green),
-        ...Object.keys(state.monthlyWeights.recycling),
-        ...Object.keys(state.monthlyWeights.landfill)
-      ]).sort()
-    )
   }
 }
