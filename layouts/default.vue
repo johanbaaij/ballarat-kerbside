@@ -3,7 +3,7 @@
     <v-navigation-drawer v-model="drawer" app>
       <filters />
     </v-navigation-drawer>
-    <v-app-bar app color="indigo" dark>
+    <v-app-bar color="primary" dark app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>{{ title }}</v-toolbar-title>
     </v-app-bar>
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       title: 'Ballarat Kerbside Data',
-      drawer: false
+      drawer: true
     }
   }
 }
