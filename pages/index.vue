@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loaded">
+  <div>
     <v-row class="chart-row">
       <v-col>
         <h2>Delivery Weights</h2>
@@ -26,7 +26,6 @@ export default {
   },
   data() {
     return {
-      loaded: false,
       chartOptions: {
         maintainAspectRatio: false,
         responsiveAnimationDuration: 100,
@@ -106,11 +105,9 @@ export default {
       }
     }
   },
-  async mounted() {
-    await this.$store.dispatch('getMonthlyWeights')
-    await this.$store.dispatch('getMonthlyCollections')
-
-    this.loaded = true
+  async fetch({ store, params }) {
+    await store.dispatch('getMonthlyWeights')
+    await store.dispatch('getMonthlyCollections')
   }
 }
 </script>
