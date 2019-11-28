@@ -3,6 +3,7 @@ import axios from '~/plugins/axios'
 
 export const state = () => ({
   wasteTypes: ['landfill', 'green', 'recycling'],
+  years: ['all', 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
   monthlyCollections: {
     landfill: {},
     green: {},
@@ -54,7 +55,7 @@ export const getters = {
   }
 }
 export const actions = {
-  async getMonthlyCollections({ commit }) {
+  async fetchMonthlyCollections({ commit }) {
     const response = await axios.get(
       `datastore_search_sql?sql=SELECT
         SUM ("Count"::int) as "Count",
@@ -92,7 +93,7 @@ export const actions = {
         }, {})
     })
   },
-  async getMonthlyWeight({ commit }, { type, table }) {
+  async fetchMonthlyWeight({ commit }, { type, table }) {
     const response = await axios.get(
       `datastore_search_sql?sql=SELECT
         SUM ("weight"::real) as "weight",
@@ -111,16 +112,16 @@ export const actions = {
       }, {})
     })
   },
-  async getMonthlyWeights({ dispatch }) {
-    await dispatch('getMonthlyWeight', {
+  async fetchMonthlyWeights({ dispatch }) {
+    await dispatch('fetchMonthlyWeight', {
       type: 'green',
       table: process.env.tableIdGreen
     })
-    await dispatch('getMonthlyWeight', {
+    await dispatch('fetchMonthlyWeight', {
       type: 'landfill',
       table: process.env.tableIdLandfill
     })
-    await dispatch('getMonthlyWeight', {
+    await dispatch('fetchMonthlyWeight', {
       type: 'recycling',
       table: process.env.tableIdRecycling
     })

@@ -106,8 +106,8 @@ export default {
     }
   },
   async fetch({ store, params }) {
-    await store.dispatch('getMonthlyWeights')
-    await store.dispatch('getMonthlyCollections')
+    await store.dispatch('fetchMonthlyWeights')
+    await store.dispatch('fetchMonthlyCollections')
   }
 }
 </script>
