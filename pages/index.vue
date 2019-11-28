@@ -6,10 +6,40 @@
         <chart :chart-data="weightsData" :options="chartOptions" />
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <p>
+          Datasets: City of Ballarat,
+          <a
+            href="https://data.gov.au/data/dataset/ballarat-kerbside-green-waste-deliveries"
+            >Ballarat Kerbside Green Waste Deliveries</a
+          >,
+          <a
+            href="https://data.gov.au/data/dataset/ballarat-kerbside-landfill-deliveries"
+            >Ballarat Kerbside Landfill Deliveries</a
+          >,
+          <a
+            href="https://data.gov.au/data/dataset/ballarat-kerbside-recycling-deliveries"
+            >Ballarat Kerbside Recycling Deliveries</a
+          >, Sourced on 28 November 2019
+        </p>
+      </v-col>
+    </v-row>
     <v-row class="chart-row">
       <v-col>
         <h2>Collection Counts</h2>
         <chart :chart-data="collectionsData" :options="chartOptions" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <p>
+          Dataset:
+          <a
+            href="https://data.gov.au/data/dataset/91fe5bbb-0738-4b39-a56f-7687c6dce65e"
+            >Ballarat Kerbside Bin Collections</a
+          >, City of Ballarat, Sourced on 28 November 2019
+        </p>
       </v-col>
     </v-row>
   </div>

@@ -13,7 +13,10 @@
       </v-container>
     </v-content>
     <v-footer app>
-      <span>&copy; 2019</span>
+      <span
+        >A website by <a href="https://johan.baaij.com.au">Johan Baaij</a></span
+      >
+      <v-spacer />
     </v-footer>
   </v-app>
 </template>
