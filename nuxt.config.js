@@ -35,7 +35,8 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics'
   ],
   /*
    ** Nuxt.js modules
@@ -76,5 +77,8 @@ export default {
     tableIdLandfill: '7d5aee9b-04c1-4222-8913-65238d94d5d4',
     tableIdGreen: 'bf63bada-b058-4d75-84da-015d50fa8abc',
     baseUrl: 'https://data.gov.au/data/api/3/action/'
+  },
+  googleAnalytics: {
+    id: 'UA-139935249-2'
   }
 }
